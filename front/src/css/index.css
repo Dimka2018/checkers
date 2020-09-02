@@ -1,0 +1,17 @@
+:root {
+    --cell-size: 5vw
+}
+
+.black {
+    background: black;
+}
+
+.white {
+    background: white;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

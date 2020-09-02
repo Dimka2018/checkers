@@ -1,0 +1,15 @@
+.board {
+    margin-right: auto;
+    margin-left: auto;
+    border: solid 1px black;
+    width: calc(var(--cell-size) * 8);
+}
+
+.board .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+}
+
+.line {
+    display: flex;
+}

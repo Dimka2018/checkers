@@ -1,0 +1,17 @@
+.chip {
+    width: calc(var(--cell-size)* 0.75);
+    height: calc(var(--cell-size)* 0.75);
+    position: absolute;
+}
+
+.b-black {
+    border: black solid 0.1vw;
+}
+
+.b-white {
+    border: white solid 0.1vw;
+}
+
+.chip:hover {
+    cursor: pointer;
+}
