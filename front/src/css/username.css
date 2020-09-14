@@ -1,0 +1,54 @@
+.username-background {
+    width: 100vw;
+    height: 100vh;
+    background:linear-gradient(90deg, #ffffff 50%,#000 0)0/15vw,linear-gradient(#FFF 50%,#000 0)0/9% 15vw;
+    background-blend-mode: exclusion;
+    display: flex;
+    justify-content: center;
+}
+
+.username-form {
+    width: 50vw;
+    height: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4vw;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+    border-radius: 50%;
+}
+
+.username-form .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15vw;
+    font-weight: bold;
+    font-size: 1.5vw;
+}
+
+.username-form input {
+    width: 15vw;
+    height: 2.5vw;
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-top: 5vw;
+    border-radius: 1vw;
+    border: black solid;
+    outline: none;
+    text-align: center;
+}
+
+.username-form button {
+    width: 15vw;
+    height: 2.5vw;
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-top: 5vw;
+    border-radius: 1vw;
+    border: black solid;
+    outline: none;
+    text-align: center;
+    background: white;
+}

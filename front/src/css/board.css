@@ -8,6 +8,9 @@
 .board .cell {
     width: var(--cell-size);
     height: var(--cell-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .line {
