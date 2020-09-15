@@ -6,6 +6,6 @@ import Game from "./js/page/game";
 import Username from "./js/page/username";
 
 ReactDOM.render(
-    <Username />,
+    <Game />,
   document.getElementById('root')
 );
