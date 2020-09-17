@@ -26,7 +26,11 @@ class Table extends React.Component {
                 row: row,
                 col: col
             }
-        } else if (this.state.boardState[row][col] === 0 && this.activeChip && this.canMove(row, col)) {
+        } else if (this.canAttack(row, col)) {
+            let removeCol = this.activeChip.col - col > 0 ? col + 1 : col - 1;
+            this.remove(row + 1, removeCol);
+            this.move(row, col);
+        } else if (this.canMove(row, col)) {
             this.move(row, col);
         }
     }
@@ -36,12 +40,21 @@ class Table extends React.Component {
         let colDist = this.activeChip.col - col;
         console.log(rowDist);
         console.log(colDist);
-        if (rowDist === 1 && Math.abs(colDist) === 1 && this.state.boardState[row][col] === 0) {
-            return true;
-        } else if (rowDist === 2 && Math.abs(colDist) === 2 && this.state.boardState[row][col] === 0) {
-            return true;
-        }
-        return false;
+        return (rowDist === 1 && Math.abs(colDist) === 1 && this.state.boardState[row][col] === 0);
+    }
+
+    remove(row, col) {
+        let board = [...this.state.boardState];
+        board[row][col] = 0;
+        this.setState({boardState: board});
+    }
+
+    canAttack(row, col) {
+        let rowDist = this.activeChip.row - row;
+        let colDist = this.activeChip.col - col;
+        return (rowDist === 2 && Math.abs(colDist) === 2 &&
+            this.state.boardState[row][col] === 0 &&
+            (this.state.boardState[row + 1][col - 1] === 1 || this.state.boardState[row + 1][col + 1] === 1))
     }
 
     move(row, col) {
