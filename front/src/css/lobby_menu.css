@@ -8,13 +8,12 @@
 }
 
 .create-lobby-button {
-    background: black;
+    background: white;
     border: none;
     outline: none;
     width: 12vw;
     height: 5vw;
-    color: white;
+    color: black;
     font-size: 2vw;
     font-weight: bold;
-    border-radius: 1vw;
 }

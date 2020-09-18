@@ -1,0 +1,23 @@
+package com.dimka.checkers.event;
+
+public enum Event {
+
+    LOBBY_CREATED,
+    LOBBY_LIST_CHANGED,
+    LOBBY_MEMBERS_LIST_CHANGED,
+    JOINED_TO_LOBBY,
+    LEAVE_LOBBY,
+    LOBBY_DESTROYED,
+    KICK,
+    GAME_STARTED,
+    TABLE_CHANGED,
+    YOUR_TURN_STARTED,
+    ENEMY_TURN_STARTED,
+    GAME_CHANGED,
+    SCORE_CHANGED,
+    YOU_WIN,
+    YOU_LOSE,
+    DRAW,
+    LEAVE_GAME,
+    USERNAME_CHANGED
+}

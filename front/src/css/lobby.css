@@ -1,4 +1,4 @@
-.background {
+.lobby-background {
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -7,12 +7,12 @@
     justify-content: flex-start;
     align-items: center;
     margin-top: 0;
+    background: url("../images/lobby_background.jpg");
 }
 
 .user-container {
     margin-top: 0.5vw;
-    background: black;
-    border-radius: 1vw;
+    background: rgba(0, 0, 0, 0.5);
     width: 50vw;
     height: 27vw;
     display: flex;
@@ -25,7 +25,7 @@
 .title {
     font-size: 2.5vw;
     font-weight: bold;
-    color: black;
+    color: white;
     margin-top: 3vw;
 }
 
@@ -45,8 +45,7 @@
     font-weight: bold;
     font-size: 2vw;
     color: white;
-    border-radius: 1vw;
-    background: black;
+    background: rgba(0, 0, 0, 0.5);
     border: none;
     outline: none;
 }
@@ -56,7 +55,6 @@
     width: 35vw;
     height: 6vw;
     background: white;
-    border-radius: 3vw;
     justify-content: space-between;
     align-items: center;
     margin-top: 0.3vw;

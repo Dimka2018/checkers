@@ -6,22 +6,40 @@ class Table extends React.Component {
 
     constructor(props) {
         super(props);
+        this.board = [
+            [null, 1, null, 1, null, 1, null, 1],
+            [1, null, 1, null, 1, null, 1, null],
+            [null, 1, null, 1, null, 1, null, 1],
+            [0, null, 0, null, 0, null, 0, null],
+            [null, 0, null, 0, null, 0, null, 0],
+            [2, null, 2, null, 2, null, 2, null],
+            [null, 2, null, 2, null, 2, null, 2],
+            [2, null, 2, null, 2, null, 2, null]
+        ];
         this.state = {
-            boardState: [
-                [null, 1, null, 1, null, 1, null, 1],
-                [1, null, 1, null, 1, null, 1, null],
-                [null, 1, null, 1, null, 1, null, 1],
-                [0, null, 0, null, 0, null, 0, null],
-                [null, 0, null, 0, null, 0, null, 0],
-                [2, null, 2, null, 2, null, 2, null],
-                [null, 2, null, 2, null, 2, null, 2],
-                [2, null, 2, null, 2, null, 2, null],
-            ]
+            boardState: this.board
         }
     }
 
+    onBoardChanged() {
+        console.log(this.state.boardState);
+        this.props.onBoardChanged(this.board);
+    }
+
+    setBoardState(boardState) {
+        this.setState({boardState: boardState})
+    }
+
+    block() {
+
+    }
+
+    unBlock() {
+
+    }
+
     handleClick(row, col) {
-        if (this.state.boardState[row][col] === 2) {
+        if (this.board[row][col] === 2) {
             this.activeChip = {
                 row: row,
                 col: col
@@ -30,16 +48,16 @@ class Table extends React.Component {
             let removeCol = this.activeChip.col - col > 0 ? col + 1 : col - 1;
             this.remove(row + 1, removeCol);
             this.move(row, col);
+            this.onBoardChanged();
         } else if (this.canMove(row, col)) {
             this.move(row, col);
+            this.onBoardChanged();
         }
     }
 
     canMove(row, col) {
         let rowDist = this.activeChip.row - row;
         let colDist = this.activeChip.col - col;
-        console.log(rowDist);
-        console.log(colDist);
         return (rowDist === 1 && Math.abs(colDist) === 1 && this.state.boardState[row][col] === 0);
     }
 
@@ -68,16 +86,17 @@ class Table extends React.Component {
                 return c;
             })
         });
-        console.log(newBoard);
         this.setState({boardState: newBoard});
+        this.board = newBoard;
         this.activeChip = undefined;
+        return newBoard;
     }
 
     render() {
         const cells = this.state.boardState.map((row, rowIndex) =>
             <div className='line no-gutters'>
                 {row.map((cell, colIndex) => <div className={'cell ' + (cell !== null ? 'black' : 'white')} onClick={() => this.handleClick(rowIndex, colIndex)} >
-                    {!!cell && <Chip color={cell === 1 ? 'white' : 'black'} />}
+                    {!!cell && <Chip color={cell === 1 ? 'white' : 'black'} id={rowIndex + '' + colIndex}/>}
                 </div> )}
             </div>);
         return (

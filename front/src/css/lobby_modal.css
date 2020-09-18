@@ -12,21 +12,21 @@
 
 .lobby-title {
     font-size: 3vw;
-    color: white;
+    color: black;
 }
 
 .modal-container {
-    background: black;
+    background: white;
     width: 50vw;
     height: 30vw;
-    border-radius: 1vw;
     margin-top: 10vw;
 }
 
 .game-input {
     width: 20vw;
     height: 4vw;
-    border-radius: 1vw;
+    background: black;
+    color: white;
     text-align: center;
     font-size: 2vw;
     font-weight: bold;
@@ -49,9 +49,8 @@
 .modal-button {
     width: 12vw;
     height: 5vw;
-    background: white;
-    border-radius: 1vw;
-    color: black;
+    background: black;
+    color: white;
     font-weight: bold;
     font-size: 2vw;
     outline: none;

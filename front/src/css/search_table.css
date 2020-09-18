@@ -3,36 +3,35 @@
     height: 35vw;
     width: 90vw;
     overflow: auto;
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .search-table tbody tr:hover {
     cursor: pointer;
-    background: black;
-    color: white;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .table-wrapper-scroll-y {
     display: block;
-    border: 0.5vw solid black;
-    border-radius: 1vw;
+    border: 0.5vw solid white;
 }
 
 
 .search-table-content, .search-table-content th, .search-table-content td {
-    border: 1px solid black;
+    border: 1px solid white;
     text-align: center;
 }
 
-.table thead th {
-    border-bottom: 1px solid black;
+.search-table-content th {
+    color: white;
 }
 
-.search-table::-webkit-scrollbar-track {
-    background: black;
+.search-table-content td {
+    color: white;
 }
 
 .search-table::-webkit-scrollbar-thumb {
-    background: white;
+    background: black;
     border-radius: 0.5vw;
     width: 0.5vw;
 }
