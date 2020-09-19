@@ -18,7 +18,8 @@ class Table extends React.Component {
         ];
         this.state = {
             boardState: this.board
-        }
+        };
+        this.isBlocked = false;
     }
 
     onBoardChanged() {
@@ -31,27 +32,29 @@ class Table extends React.Component {
     }
 
     block() {
-
+        this.isBlocked = true;
     }
 
     unBlock() {
-
+        this.isBlocked = false;
     }
 
     handleClick(row, col) {
-        if (this.board[row][col] === 2) {
-            this.activeChip = {
-                row: row,
-                col: col
+        if (!this.isBlocked) {
+            if (this.board[row][col] === 2) {
+                this.activeChip = {
+                    row: row,
+                    col: col
+                }
+            } else if (this.canAttack(row, col)) {
+                let removeCol = this.activeChip.col - col > 0 ? col + 1 : col - 1;
+                this.remove(row + 1, removeCol);
+                this.move(row, col);
+                this.onBoardChanged();
+            } else if (this.canMove(row, col)) {
+                this.move(row, col);
+                this.onBoardChanged();
             }
-        } else if (this.canAttack(row, col)) {
-            let removeCol = this.activeChip.col - col > 0 ? col + 1 : col - 1;
-            this.remove(row + 1, removeCol);
-            this.move(row, col);
-            this.onBoardChanged();
-        } else if (this.canMove(row, col)) {
-            this.move(row, col);
-            this.onBoardChanged();
         }
     }
 
