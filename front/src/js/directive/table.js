@@ -47,12 +47,20 @@ class Table extends React.Component {
                     col: col
                 }
             } else if (this.canAttack(row, col)) {
+                let removeRow = this.activeChip.row - row > 0 ? row + 1 : row - 1;
                 let removeCol = this.activeChip.col - col > 0 ? col + 1 : col - 1;
-                this.remove(row + 1, removeCol);
+                this.remove(removeRow, removeCol);
                 this.move(row, col);
-                this.onBoardChanged();
+                if (!(this.canAttack(this.activeChip.row + 2, this.activeChip.col + 2) ||
+                    this.canAttack(this.activeChip.row + 2, this.activeChip.col - 2) ||
+                    this.canAttack(this.activeChip.row  -2, this.activeChip.col + 2) ||
+                    this.canAttack(this.activeChip.row - 2, this.activeChip.col - 2))) {
+                    this.activeChip = undefined;
+                    this.onBoardChanged();
+                }
             } else if (this.canMove(row, col)) {
                 this.move(row, col);
+                this.activeChip = undefined;
                 this.onBoardChanged();
             }
         }
@@ -71,11 +79,23 @@ class Table extends React.Component {
     }
 
     canAttack(row, col) {
+        return  this.canAttackForward(row, col) || this.canAttackBack(row, col);
+    }
+
+    canAttackForward(row, col) {
         let rowDist = this.activeChip.row - row;
         let colDist = this.activeChip.col - col;
         return (rowDist === 2 && Math.abs(colDist) === 2 &&
             this.state.boardState[row][col] === 0 &&
             (this.state.boardState[row + 1][col - 1] === 1 || this.state.boardState[row + 1][col + 1] === 1))
+    }
+
+    canAttackBack(row, col) {
+        let rowDist = this.activeChip.row - row;
+        let colDist = this.activeChip.col - col;
+        return (rowDist === -2 && Math.abs(colDist) === 2 &&
+            this.state.boardState[row][col] === 0 &&
+            (this.state.boardState[row - 1][col - 1] === 1 || this.state.boardState[row - 1][col + 1] === 1))
     }
 
     move(row, col) {
@@ -89,9 +109,10 @@ class Table extends React.Component {
                 return c;
             })
         });
+        this.activeChip.row = row;
+        this.activeChip.col = col;
         this.setState({boardState: newBoard});
         this.board = newBoard;
-        this.activeChip = undefined;
         return newBoard;
     }
 
